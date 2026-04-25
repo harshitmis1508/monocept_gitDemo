@@ -222,7 +222,101 @@ Fee: 5000
 * Logging & Exception Handling
 * Authentication System
 
+## 🧩 Class Diagram
+
+```mermaid
+classDiagram
+
+class Student {
+  -int id
+  -String name
+  -int age
+  -String branch
+  +getId()
+  +getName()
+  +getAge()
+  +getBranch()
+  +setName(String)
+  +setBranch(String)
+}
+
+class Registration {
+  -int regId
+  -int studentId
+  -String courseName
+  -double feesPaid
+  +getStudentId()
+  +getCourseName()
+  +getFeesPaid()
+}
+
+class StudentDAO {
+  +addStudent(Student)
+  +exists(int)
+  +updateStudent(int, String, String)
+  +deleteStudent(int, Connection)
+  +getAll(Connection)
+  +getById(int, Connection)
+}
+
+class RegistrationDAO {
+  +isDuplicate(int, String, Connection)
+  +insert(int, String, double, Connection)
+  +updateFee(int, String, double)
+  +deleteByStudent(int, Connection)
+  +cancel(int, String)
+  +highPaying(double, Connection)
+  +courseCount(Connection)
+}
+
+class CourseDAO {
+  +getValidCourse(String)
+  +showCourses()
+}
+
+class StudentService {
+  +addStudent(Student)
+  +registerCourse(int, String, double)
+  +viewAll()
+  +search(int)
+  +updateStudent(int, String, String)
+  +updateFee(int, String, double)
+  +cancel(int, String)
+  +deleteStudent(int)
+  +highPaying(double)
+  +courseCount()
+}
+
+class DBUtil {
+  +getConnection()
+}
+
+class InputUtil {
+  +getValidInt(String)
+  +getValidString(String)
+  +getValidFee(String)
+}
+
+class MainApp {
+  +main(String[])
+}
+
+Student --> Registration
+StudentService --> StudentDAO
+StudentService --> RegistrationDAO
+StudentService --> CourseDAO
+
+StudentDAO --> DBUtil
+RegistrationDAO --> DBUtil
+CourseDAO --> DBUtil
+
+MainApp --> StudentService
+MainApp --> InputUtil
+```
 ---
+
+
+```
 
 ## 🙋‍♂️ Author
 
