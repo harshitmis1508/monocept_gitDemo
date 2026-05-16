@@ -3,4 +3,7 @@ bin/
 .settings/
 .project
 .classpath
+target/
+.DS_Store
+git rm -r --cached target .DS_Store .classpath .project .settings
 
